@@ -8,6 +8,6 @@ class Performance extends Component
 {
     public function render()
     {
-        return view('livewire.rider.performance');
+        return view('livewire.rider.performance')->layout('layouts.rider');
     }
 }
