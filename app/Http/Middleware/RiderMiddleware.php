@@ -15,10 +15,24 @@ class RiderMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->isRider()) {
-            return $next($request);
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Please login to access rider dashboard.');
         }
 
-        return redirect('/');
+        $user = auth()->user();
+
+        // Check if user has rider role
+        if (!$user->isRider()) {
+            return redirect('/')->with('error', 'You do not have permission to access the rider dashboard.');
+        }
+
+        // Check if rider record exists
+        if (!$user->rider) {
+            return redirect('/')->with('error', 'Rider profile not found. Please contact support.');
+        }
+
+        return $next($request);
     }
 }
+

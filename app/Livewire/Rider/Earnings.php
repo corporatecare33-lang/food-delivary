@@ -16,7 +16,9 @@ class Earnings extends Component
     public function mount()
     {
         $this->rider = auth()->user()->rider;
+        
         if (!$this->rider) {
+            session()->flash('error', 'Rider profile not found. Please contact support.');
             return redirect()->route('home');
         }
         

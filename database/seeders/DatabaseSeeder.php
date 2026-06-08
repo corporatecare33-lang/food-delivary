@@ -30,9 +30,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             MerchantSeeder::class,
+            RiderSeeder::class,
             OrderSeeder::class,
         ]);
-
-        // I'll add more seeders later as per the todo list
     }
 }
