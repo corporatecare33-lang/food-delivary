@@ -32,6 +32,6 @@ class HomePage extends Component
         return view('livewire.home-page', [
             'merchants' => $merchants,
             'lunchItems' => $lunchItems,
-        ])->layout('layouts.guest');
+        ]);
     }
 }

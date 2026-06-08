@@ -11,7 +11,9 @@ use App\Livewire\Merchant\MenuManager;
 use App\Livewire\Customer\OrderHistory;
 use App\Livewire\Rider\Dashboard as RiderDashboard;
 
-Route::get('/', HomePage::class)->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
 // Role-based Redirect Dashboard
 Route::get('/dashboard', function () {
@@ -34,6 +36,13 @@ Route::get('/merchant/{slug}', MerchantDetails::class)->name('merchant.details')
 // Rider Routes
 Route::middleware(['auth', 'rider'])->prefix('rider')->name('rider.')->group(function () {
     Route::get('/dashboard', RiderDashboard::class)->name('dashboard');
+    Route::get('/orders', App\Livewire\Rider\Orders::class)->name('orders');
+    Route::get('/earnings', App\Livewire\Rider\Earnings::class)->name('earnings');
+    Route::get('/performance', App\Livewire\Rider\Performance::class)->name('performance');
+    Route::get('/notifications', App\Livewire\Rider\Notifications::class)->name('notifications');
+    Route::get('/profile', App\Livewire\Rider\Profile::class)->name('profile');
+    Route::get('/support', App\Livewire\Rider\Support::class)->name('support');
+    Route::get('/settings', App\Livewire\Rider\Settings::class)->name('settings');
 });
 
 // Customer Routes
